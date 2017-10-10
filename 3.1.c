@@ -7,10 +7,6 @@ int main() {
 	};
 	union some thing;
 	thing.i = 1;
-	if (thing.sh == 1) {
-		printf("liltle endean\n");
-	} else {
-		printf("big endean");
-	};
+	printf("%s\n", thing.sh == 0 ? "big-endian" : "little-endian");
 	return 0;
 }
