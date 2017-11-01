@@ -15,11 +15,27 @@ void strcpy(char *dst, char *src) {
 	}
 }
 
+char *strcat(char *dst, char *src) {
+	char *res;
+	res = dst;
+	while (*dst != '\0') {
+		dst++;
+	}
+	while ((*dst = *src) != '\0') {
+		dst++;
+		src++;
+	}
+	return res;
+}	
+
+int strcmr(char *s1, char *s2) {
+	int i = 0;
+	while ((s1[i] - s2[i]) == 0 && s1[i] != '\0' && s2[i] != '\0') {
+		i++;
+	}
+	return s1[i] - s2[i];
+}
+
 int main() {
-	char a[5] = "hasd\0";
-	char b[5] = "yqwe\0";
-	strcpy(a, b);
-	printf("%d\n", strlen("Hello, world!\0"));
-	printf("%s\n", a);
 	return 0;
 }
