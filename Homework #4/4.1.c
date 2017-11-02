@@ -9,9 +9,9 @@ int strlen(char *s) {
 }
 
 void strcpy(char *dst, char *src) {
-	int i = 0;
-	while ((*(dst + i) = *(src + i)) != '\0') {
-		i++;
+	while ((*dst = *src) != '\0') {
+		dst++;
+		src++;
 	}
 }
 
@@ -29,11 +29,11 @@ char *strcat(char *dst, char *src) {
 }	
 
 int strcmr(char *s1, char *s2) {
-	int i = 0;
-	while ((s1[i] - s2[i]) == 0 && s1[i] != '\0' && s2[i] != '\0') {
-		i++;
+	while ((*s1 - *s2) == 0 && *s1 != '\0' && *s2 != '\0') {
+		s1++;
+		s2++;
 	}
-	return s1[i] - s2[i];
+	return *s1 - *s2;
 }
 
 int main() {
