@@ -1,35 +1,31 @@
 #include <stdio.h>
 
 int strlen(char *s) {
-	int n;
-	for (n = 0; *s != '\0'; s++) {
+	char *n = s;
+	while (*n)
 		n++;
-	}
-	return n;
+	return n - s;
 }
 
 void strcpy(char *dst, char *src) {
-	while ((*dst = *src) != '\0') {
-		dst++;
-		src++;
-	}
+	while (*dst++ = *src++) 
+		;
+	*dst = '\0';
 }
 
 char *strcat(char *dst, char *src) {
-	char *res;
-	res = dst;
-	while (*dst != '\0') {
-		dst++;
-	}
-	while ((*dst = *src) != '\0') {
-		dst++;
-		src++;
-	}
-	return res;
-}	
+    char *res = dst;
+    while (*dst)
+        dst++;
+    while (*dst++ = *src++)
+        ;
+    *dst = '\0';
+    return res;
+}
+
 
 int strcmr(char *s1, char *s2) {
-	while ((*s1 - *s2) == 0 && *s1 != '\0' && *s2 != '\0') {
+	while (!(*s1 - *s2) && *s1++ && *s2++) {
 		s1++;
 		s2++;
 	}
