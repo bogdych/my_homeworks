@@ -108,6 +108,7 @@ void freeLinkedList(LinkedList * list) {
 		Node * currNode = list->head;
 		while (currNode) {
 			list->head = currNode->next;
+			free(currNode->key);
 			free(currNode);
 			currNode = list->head;
 		}
