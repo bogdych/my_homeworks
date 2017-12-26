@@ -29,7 +29,7 @@ int logicalShift(int x, int n) {
 }
 
 int addOK(int x, int y) {
-	return !((((x >> 24) & 255) + ((y >> 24) & 255) + (((x & ~(128 << 24)) + (y & ~(128 << 24))) >> 24)) >> 7);
+	return !(~((x >> 31) ^ (y >> 31)) & ((x >> 31) ^ (x + y >> 31)));
 }
 
 int bang(int x) {
