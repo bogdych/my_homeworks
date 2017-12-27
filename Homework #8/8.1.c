@@ -59,17 +59,22 @@ void countSort(int *a, int aSize) {
             max = a[i];
     }
     int *c = (int *)calloc((max + 1), sizeof(int));
-    for (int i = 0; i < aSize; i++) {
-        c[a[i]]++;
-    }
-    int b = 0;
-    for (int i = 0; i <= max; i++) {
-        for (int j = 0; j < c[i]; j++) {
-            a[b] = i;
-            b++;
+    if (c != NULL) {
+        for (int i = 0; i < aSize; i++) {
+            c[a[i]]++;
         }
-    }    
-    free(c);
+        int b = 0;
+        for (int i = 0; i <= max; i++) {
+            for (int j = 0; j < c[i]; j++) {
+                a[b] = i;
+                b++;
+            }
+        }    
+        free(c);
+    }
+    else {
+        exit(0);
+    }
 }
 
 void main() {
