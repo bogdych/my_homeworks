@@ -47,20 +47,19 @@ void printFloat(int sign, int exp, int mantissa) {
 }
 
 
-void firstMethod(float f) {
+void firstMethod(int *sign, int *exp, int *mantissa, float f) {
 	union {
 		float fl;
 		int i;
 	} un;
 
 	un.fl = f;
-	int sign = (un.i >> 31) & 1;
-	int exp = (un.i >> mantissaLength) & 0xff ;
-	int mantissa = un.i & ((1 << mantissaLength) - 1);
-	printFloat(sign, exp, mantissa);
+	*sign = (un.i >> 31) & 1;
+	*exp = (un.i >> mantissaLength) & 0xff ;
+	*mantissa = un.i & ((1 << mantissaLength) - 1);
 }
 
-void secondMethod(float f) {
+void secondMethod(int *sign, int *exp, int *mantissa, float f) {
 	union {
 		float fl;
 		struct {
@@ -70,22 +69,23 @@ void secondMethod(float f) {
 		} s;
 	} un;
 	un.fl = f;
-	printFloat(un.s.sign, un.s.exp, un.s.mantissa);
+	*sign = un.s.sign;
+	*exp = un.s.exp;
+	*mantissa = un.s.mantissa;
 }
 
-void thirdMethod(float f) {
+void thirdMethod(int *sign, int *exp, int *mantissa, float f) {
 	float *p = &f;
 	int i = *((int *)p);
 
-	int sign = (i >> 31) & 1;
-	int exp = (i >> mantissaLength) & 0xff;
-	int mantissa = i & ((1 << mantissaLength) - 1);
-	printFloat(sign, exp, mantissa);
+	*sign = (i >> 31) & 1;
+	*exp = (i >> mantissaLength) & 0xff;
+	*mantissa = i & ((1 << mantissaLength) - 1);
 }
 
 struct Method {
 	char *description;
-	void(*doAction)(float);
+	void(*doAction)(int *, int *, int *, float);
 };
 
 const struct Method methods[] = {
@@ -98,6 +98,9 @@ void main() {
 	if (sizeof(float) == 4) {
 		float f1;
 		float f2;
+		int sign = 0;
+		int exp = 0;
+		int mantissa = 0;
 		printf("Please enter 2 numbers with floating point.\n");
 		printf("Divident: ");
 		scanf("%f", &f1);
@@ -116,7 +119,8 @@ void main() {
 			printf("Wrong input. Try again: ");
 		}
 		if (meth) {
-			methods[meth - 1].doAction(f);
+			methods[meth - 1].doAction(&sign, &exp, &mantissa, f);
+			printFloat(sign, exp, mantissa);
 		}
 		else {
 			exit(0);
