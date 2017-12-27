@@ -1,3 +1,58 @@
+Size: 1 
+Num of keys: 19302 
+Num of empty lists: 0 
+Num of not empty lists: 1 
+Max list length: 19302 
+Min list length: 19302 
+Average list length: 19302.000000 
+Most frequent word: the
+Operating time (ms): 5782
+
+
+Size: 2 
+Num of keys: 19302 
+Num of empty lists: 0 
+Num of not empty lists: 2 
+Max list length: 9755 
+Min list length: 9547 
+Average list length: 9651.000000 
+Most frequent word: the
+Operating time (ms): 4117
+
+
+Size: 5 
+Num of keys: 19302 
+Num of empty lists: 0 
+Num of not empty lists: 5 
+Max list length: 3909 
+Min list length: 3804 
+Average list length: 3860.400000 
+Most frequent word: the
+Operating time (ms): 2363
+
+
+Size: 10 
+Num of keys: 19302 
+Num of empty lists: 0 
+Num of not empty lists: 10 
+Max list length: 1971 
+Min list length: 1875 
+Average list length: 1930.200000 
+Most frequent word: the
+Operating time (ms): 1383
+
+
+Size: 100 
+Num of keys: 19302 
+Num of empty lists: 0 
+Num of not empty lists: 100 
+Max list length: 227 
+Min list length: 156 
+Average list length: 193.020000 
+Most frequent word: the
+Operating time (ms): 236
+
+
 Size: 1000 
 Num of keys: 19302 
 Num of empty lists: 0 
@@ -6,4 +61,39 @@ Max list length: 34
 Min list length: 6 
 Average list length: 19.302000 
 Most frequent word: the
-Operating time (ms): 153
+Operating time (ms): 119
+
+
+Size: 10000 
+Num of keys: 19302 
+Num of empty lists: 1411 
+Num of not empty lists: 8589 
+Max list length: 10 
+Min list length: 1 
+Average list length: 2.247293 
+Most frequent word: the
+Operating time (ms): 106
+
+
+Size: 100000 
+Num of keys: 19302 
+Num of empty lists: 82452 
+Num of not empty lists: 17548 
+Max list length: 4 
+Min list length: 1 
+Average list length: 1.099954 
+Most frequent word: the
+Operating time (ms): 113
+
+
+Size: 1000000 
+Num of keys: 19302 
+Num of empty lists: 980900 
+Num of not empty lists: 19100 
+Max list length: 3 
+Min list length: 1 
+Average list length: 1.010576 
+Most frequent word: the
+Operating time (ms): 106
+
+

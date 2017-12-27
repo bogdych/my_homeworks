@@ -4,7 +4,7 @@
 #include <string.h>
 
 typedef void(*iterateFunc)(char *, long);
-typedef long(*hashFunc)(char *);
+typedef long(*hashFunc)(int size, char *);
 
 typedef struct Node {
 	char *key;
@@ -164,7 +164,7 @@ void freeHashTable(HashTable * hashTable) {
 }
 
 int insertData(HashTable * hashTable, char *key, long value) {
-	long hash = hashTable->hash(key);
+	long hash = hashTable->hash(hashTable->size, key);
 	Node * node = getNodeByKey(hashTable->table[hash], key);
 	if (node) {
 		node->value += value;
@@ -184,7 +184,7 @@ int insertData(HashTable * hashTable, char *key, long value) {
 
 long getValue(HashTable * hashTable, char *key) {
 	if (hashTable) {
-		long hash = hashTable->hash(key);
+		long hash = hashTable->hash(hashTable->size, key);
 		return getValueByKey(hashTable->table[hash], key);
 	}
 }
