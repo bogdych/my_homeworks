@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 const int mantissaLength = 23;
@@ -16,18 +17,9 @@ void printFloat(int sign, int exp, int mantissa) {
 		printf("NaN");
 	}
 	else {
-		double f = pow(2, mantissaLength);
-		f = (double)mantissa / f;
-		int accuracy = 0;
-		int zeros = (mantissa - 1) & (~mantissa);
-		while (zeros & accuracy < 23) {
-			accuracy++;
-			zeros = zeros >> 1;
-		}
-		accuracy = mantissaLength - accuracy;
 		int deg = exp - 127;
 		printf("    %d   %d\n", sign, deg);
-		printf("(-1) * 2", sign);
+		printf("(-1) * 2");
 		int leng = 1;
 		if (deg < 0) {
 			leng++;
@@ -40,9 +32,20 @@ void printFloat(int sign, int exp, int mantissa) {
 		for (int i = 0; i < leng; i++) {
 			printf(" ");
 		}
-		printf("* %.*f\n", accuracy, 1.0 + f);
+		float s = 1;
+		float t = 1;
+		for (int i = 0; i <= 22; i++) 
+		{
+			int current = mantissa & (1 << 22);
+			current = (current>> 22) & 1;
+			mantissa = mantissa << 1;
+			t = t / 2;
+			s += t * current;
+		}
+		printf(" * %g\n", s);
 	}
 }
+
 
 void firstMethod(float f) {
 	union {
@@ -97,18 +100,27 @@ void main() {
 		float f2;
 		printf("Please enter 2 numbers with floating point.\n");
 		printf("Divident: ");
-		scanf_s("%f", &f1);
+		scanf("%f", &f1);
 		printf("Divisor:  ");
-		scanf_s("%f", &f2);
+		scanf("%f", &f2);
 		int meth;
 		int methodsCount = sizeof(methods) / sizeof(struct Method);
 		printf("Choose method of finding of quotient:\n");
 		for (int i = 0; i < methodsCount; i++) {
 			printf("%d. %s\n", i + 1, methods[i].description);
 		}
+		printf("0. Exit\n");
 		float f = f1 / f2;
-		scanf_s("%d", &meth);
-		methods[meth - 1].doAction(f);
+		scanf("%d", &meth);
+		while (!(meth >= 0 && meth <= 3)) {
+			printf("Wrong input. Try again: ");
+		}
+		if (meth) {
+			methods[meth - 1].doAction(f);
+		}
+		else {
+			exit(0);
+		}
 	}
 	else {
 		printf("I don't know why, but the size of float is not 4 bytes on your system :(");
