@@ -1,0 +1,9 @@
+Size: 1000 
+Num of keys: 19302 
+Num of empty lists: 0 
+Num of not empty lists: 1000 
+Max list length: 34 
+Min list length: 6 
+Average list length: 19.302000 
+Most frequent word: the
+Operating time (ms): 153

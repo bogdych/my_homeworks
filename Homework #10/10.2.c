@@ -19,7 +19,13 @@ void main() {
 	HashTable * hashTable = createHashTable(sizeOfTable, hashFunction);
 
 	FILE *file = fopen("file.txt", "r");
+	if (!file) {
+		exit(0);
+	}
 	char *str = realloc(NULL, sizeof(char)*0);
+	if (!str) {
+		exit(0);
+	}
 	char ch;
 	size_t size = 16;
 	size_t len = 0;
@@ -54,6 +60,9 @@ void main() {
 				flag = !flag;
 				str[len++] = '\0';
 				str = realloc(str, sizeof(char) * len);
+				if (!str) {
+					exit(0);
+				}
 				len = 0;
 				size = 16;
 				if (!insertData(hashTable, str, 1)) {
